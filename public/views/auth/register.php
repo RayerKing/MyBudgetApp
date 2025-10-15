@@ -12,7 +12,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyBudgetApp</title>
+    
     <link rel="stylesheet" href="../../assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Registrace</title>
@@ -36,30 +36,30 @@ session_start();
                     <legend>Registrace</legend>
 
                     <div class="form-group">
-                        <label for="userNameReg">Přihlašovací jméno</label>
+                        <label for="userNameReg"><i class="fa-solid fa-circle-user"></i> Přihlašovací jméno</label>
                         <input type="text" id="userNameReg" name="userNameReg" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="nameReg">Jméno</label>
+                            <label for="nameReg"><i class="fa-regular fa-user"></i> Jméno</label>
                             <input type="text" id="nameReg" name="nameReg" autocomplete="given-name" required>
                         </div>
                         <div class="form-group">
-                            <label for="lastNameReg">Příjmení</label>
+                            <label for="lastNameReg"><i class="fa-regular fa-user"></i> Příjmení</label>
                             <input type="text" id="lastNameReg" name="lastNameReg" autocomplete="family-name" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="emailReg">E-mail</label>
+                        <label for="emailReg"><i class="fa-solid fa-envelope"></i> E-mail</label>
                         <input type="email" id="emailReg" name="emailReg" autocomplete="email" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="passwordReg">Heslo</label>
+                            <label for="passwordReg"><i class="fa-solid fa-lock"></i> Heslo</label>
                             <input type="password" id="passwordReg" name="passwordReg" minlength="8" required>
                         </div>
                         <div class="form-group">
-                            <label for="passwordConfirmReg">Potvrdit heslo</label>
+                            <label for="passwordConfirmReg"><i class="fa-solid fa-lock"></i> Potvrdit heslo</label>
                             <input type="password" id="passwordConfirmReg" name="passwordConfirmReg" minlength="8" required>
                         </div>
                     </div>
@@ -69,7 +69,7 @@ session_start();
                     <?php
 
                     if (isset($_SESSION["flashRegister"])): ?>
-                        <p class="flashMessage"><?= htmlspecialchars($_SESSION['flashRegister'], ENT_QUOTES) ?></p>
+                        <p class="flashMessage"><?= htmlspecialchars($_SESSION["flashRegister"], ENT_QUOTES) ?></p>
                         <?php
                         unset($_SESSION["flashRegister"]); ?>
 
