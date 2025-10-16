@@ -1,0 +1,187 @@
+.user-menu {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+#option-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #cbd5e1;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, transform .06s ease;
+}
+#option-menu:hover { color: #fff; background: rgba(255,255,255,0.08); }
+#option-menu:active { transform: scale(0.98); }
+#option-menu:focus-visible { outline: 2px solid #60a5fa; outline-offset: 2px; }
+
+.rozbalovaciOkno {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 260px;
+  max-width: 320px;
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(17,24,39,0.18), 0 2px 6px rgba(17,24,39,0.08);
+  padding: 8px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+.rozbalovaciOkno::before {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: -8px;
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border-left: 1px solid #e5e7eb;
+  border-top: 1px solid #e5e7eb;
+  transform: rotate(45deg);
+}
+
+.user-menu.is-open .rozbalovaciOkno,
+#option-menu[aria-expanded="true"] + .rozbalovaciOkno {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.rozbalovaciOknoRows {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.98rem;
+  line-height: 1.3;
+  color: #111827;
+  background: transparent;
+  transition: background-color .12s ease, color .12s ease;
+}
+.rozbalovaciOknoRows i { font-size: 1.05rem; color: #374151; }
+
+.rozbalovaciOknoRows.row-avatar {
+  justify-content: center;
+  cursor: default;
+  padding-top: 14px;
+  padding-bottom: 6px;
+}
+.rozbalovaciOknoRows.row-avatar i {
+  font-size: 1.8rem;
+  color: #1f2937;
+}
+
+.rozbalovaciOknoRows.row-username {
+  justify-content: center;
+  cursor: default;
+  padding-top: 0;
+  padding-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.rozbalovaciOknoRows.row-settings,
+.rozbalovaciOknoRows.row-help { cursor: pointer; }
+.rozbalovaciOknoRows.row-settings:hover,
+.rozbalovaciOknoRows.row-help:hover { background: #f3f4f6; }
+
+.rozbalovaciOkno .hr {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 6px 8px;
+  border-radius: 1px;
+}
+
+@media (max-width: 640px) {
+  .rozbalovaciOkno {
+    right: 8px;
+    min-width: min(320px, 92vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rozbalovaciOkno { transition: none; }
+  #option-menu { transition: none; }
+}
+
+.btn-logout {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font: inherit;
+  color: #111827;
+  cursor: pointer;
+  transition: background-color .12s ease;
+}
+.btn-logout:hover { background: #f3f4f6; }
+.btn-logout:focus-visible { outline: 2px solid #60a5fa; outline-offset: 2px; }
+
+/* --- Ikony v navigaci --- */
+.nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;           
+  color: #cbd5e1;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  transition: background-color .15s ease, color .15s ease, transform .06s ease;
+}
+
+.nav-icon:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-icon:active {
+  transform: scale(0.95);
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;                  
+  position: absolute;
+  right: 24px;
+}
+
+.close-menu {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color .15s ease, transform .1s ease;
+}
+
+.close-menu:hover {
+  color: #111827;
+  transform: scale(1.1);
+}
+
+.close-menu:active {
+  transform: scale(0.95);
+}

@@ -9,11 +9,11 @@ include "partials/header.php";
 
 ?>
 
-<body>
-    <form action="../../auth/logout.php" method="post">
-        <button type="submit">Odhlásit</button>
-        
-    </form>
-</body>
 
-</html>
+    
+
+    <?php
+
+    include "partials/footer.php";
+
+    ?>

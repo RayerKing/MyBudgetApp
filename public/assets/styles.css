@@ -62,14 +62,14 @@ footer {
 
 header nav a.active {
   color: #ffffff;
-  border-bottom: 2px solid #22c55e; /* jemné podtržení */
+  border-bottom: 2px solid #22c55e; 
 }
 
 /* Logo odkaz bez stylování */
 header .logo {
-  text-decoration: none; /* odstraní podtržení */
-  color: inherit; /* převezme barvu z headeru */
-  display: inline-block; /* zajistí, že se chová jako blok */
+  text-decoration: none;
+  color: inherit; 
+  display: inline-block; 
 }
 
 
@@ -237,3 +237,4 @@ input:focus {
     transform: translate(-50%, -10px);
   }
 }
+
