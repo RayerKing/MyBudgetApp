@@ -1,4 +1,5 @@
 <?php
+//  === ZPRACOVÁNÍ LOGIN PAGE ===
 
 session_start();
 
@@ -8,6 +9,8 @@ include "../config/database.php";
 ?>
 
 <?php
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim(filter_input(INPUT_POST, "userNameLog", FILTER_SANITIZE_SPECIAL_CHARS));
@@ -22,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_result($id, $firstName, $lastName, $password_hash, $createdAt, $updatedAt);
         $stmt->fetch();
 
+        // pokud údaje sedí, přesune se na dashboard
         if (password_verify($password, $password_hash)) {
             $_SESSION["id"] = $id;
             $_SESSION["firstName"] = $firstName;
@@ -34,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
     } else {
+        //jinak zustane na login strance
         $_SESSION["flashLogin"] = "Neplatné přihlašovací údaje.";
         header("Location: ../public/views/auth/login.php");
         exit;
@@ -41,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
     $connection->close();
-
 }
 
 

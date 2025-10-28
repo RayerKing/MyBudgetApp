@@ -1,7 +1,7 @@
 # 💰 MyBudgetApp
 
-**MyBudgetApp** je osobní webová aplikace pro správu rozpočtu, postavená na **PHP** a **MySQL**.  
-Projekt ukazuje bezpečnou registraci a přihlášení uživatele s moderním designem, ošetřením vstupů a přehlednou strukturou kódu.
+**MyBudgetApp** je osobní webová aplikace pro správu rozpočtu postavená na **PHP**, **MySQL** a **JavaScriptu (AJAX)**.  
+Umožňuje uživateli sledovat příjmy, výdaje a přehledně filtrovat transakce podle zvoleného měsíce nebo období.  
 
 ---
 
@@ -9,21 +9,34 @@ Projekt ukazuje bezpečnou registraci a přihlášení uživatele s moderním de
 
 - 🔐 **Registrace a přihlášení uživatele**
   - Hashování hesel pomocí `password_hash()`
-  - Ošetření vstupů (`filter_input`, `trim`, `htmlspecialchars`)
-  - Flash zprávy a redirect podle **PRG patternu**  
+  - Ověření přihlašovacích údajů pomocí `password_verify()`
+  - Ošetření vstupů přes `filter_input()` a `trim()`
+  - Flash zprávy při chybě nebo úspěchu
+  - Přesměrování pomocí **PRG patternu**
 
-- 📬 **Flash message systém**
-  - Zobrazuje hlášky o úspěchu nebo chybě  
-  - Automaticky mizí po několika sekundách animací  
+- 📊 **Dashboard s přehledem transakcí**
+  - Zobrazení všech transakcí přihlášeného uživatele
+  - Přehled rozdělený podle kategorií (např. Doprava, Jídlo, Zábava…)
+  - Automatické vypočítání časového rozsahu aktuálního měsíce
+  - Zobrazení posledních 3 záznamů s možností rozbalit všechny
+
+- 📅 **Interaktivní výběr období**
+  - Výběr konkrétního měsíce pomocí `input type="month"`
+  - Přepínání mezi měsíci pomocí šipek ⬅️➡️
+  - Výběr vlastního rozsahu dat ("Od – Do")
+  - Asynchronní načítání tabulek přes **AJAX (XMLHttpRequest)**  
+    → bez přenačítání celé stránky
 
 - 🧱 **Modulární struktura**
-  - Oddělení PHP logiky a HTML zobrazení  
-  - Společné části stránky (`partials/`)
-  - Připojení k databázi (`config/`)
+  - Oddělení logiky (`actions/`, `controller/`) od zobrazení (`views/`)
+  - Společné části stránky (`partials/`) – např. hlavička, patička
+  - Databázové připojení v `config/database.php`
+  - Reusable komponenty (např. `timebar.php`, `tables.php`)
 
 - 🎨 **Moderní a responzivní design**
-  - Flexbox + Grid layout  
-  - Flash zprávy jako notifikace, které neovlivňují layout  
+  - Flexbox + Grid layout
+  - Flash zprávy jako plovoucí notifikace
+  - Minimalistické UI s přehlednou navigací
 
 ---
 
@@ -37,7 +50,30 @@ Projekt ukazuje bezpečnou registraci a přihlášení uživatele s moderním de
    👉 `config/rozpocet.sql`
 6. Zkopíruj soubor `config/database-example.php`  
    a přejmenuj ho na `database.php`.
-7. Otevři `config/database.php` a nastav vlastní přihlašovací údaje
-8. Otevři: http://localhost/MyBudgetApp/public/
+7. Uprav přihlašovací údaje do databáze v `config/database.php`.
+8. Spusť projekt na adrese:  
+   👉 [http://localhost/MyBudgetApp/public/](http://localhost/MyBudgetApp/public/)
 
+---
+
+## 🧠 Co funguje
+
+✅ Registrace a přihlášení uživatele  
+✅ Přihlášení uchovává session (user ID, jméno, čas registrace)  
+✅ Přehled transakcí načítaný z databáze podle měsíce  
+✅ Výběr období (měsíc, Od–Do)  
+✅ Dynamická změna dat přes **AJAX bez reloadu stránky**  
+✅ Přehledné a čisté rozdělení kódu (MVC-like struktura)
+
+---
+
+## 🧪 Testovací data
+
+Pro rychlé vyzkoušení aplikace můžeš použít připravený testovací účet:
+
+| 🧍‍♂️ Uživatelské jméno | 🔑 Heslo         |
+|--------------------------|------------------|
+| `testovaci_data`         | `testovaciData`  |
+
+> 🔹 Doporučení: Po přihlášení můžeš zkoušet přepínat měsíce, filtrovat období a sledovat načítání dat.
 

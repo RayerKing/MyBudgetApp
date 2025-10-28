@@ -1,4 +1,5 @@
 <?php
+// === HTML STRUKTURA PRO LOGIN PAGE ===
 
 session_start();
 

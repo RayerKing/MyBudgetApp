@@ -1,4 +1,7 @@
 <?php
+
+// === ODHLAŠUJE UŽIVATELE A RUŠÍ SESSION ===
+
 session_start();
 
 $_SESSION = [];

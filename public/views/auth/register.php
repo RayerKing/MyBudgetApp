@@ -1,5 +1,7 @@
 <?php
 
+// === HTML STRUKTURA PRO REGISTER PAGE ===
+
 session_start();
 
 ?>

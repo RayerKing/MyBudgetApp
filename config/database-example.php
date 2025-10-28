@@ -1,12 +1,12 @@
 <?php
+
+// === PŘIPOJENÍ DO DATABAZE ===
+
 $servername = "_SERVER_NAME_";
 $username = "_USER_NAME_";
 $password = "_PASSWORD_";
 $dbname = "_DATABASE_NAME_";
 $conn = "";
-
-
-
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -18,4 +18,3 @@ echo "databáze připojena";
 
 
 mysqli_close($conn);
-?>
