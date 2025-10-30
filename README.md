@@ -64,6 +64,7 @@ Umožňuje uživateli sledovat příjmy, výdaje a přehledně filtrovat transak
 ✅ Výběr období (měsíc, Od–Do)  
 ✅ Dynamická změna dat přes **AJAX bez reloadu stránky**  
 ✅ Přehledné a čisté rozdělení kódu (MVC-like struktura)
+✅ Přidání transakcí do databáze
 
 ---
 

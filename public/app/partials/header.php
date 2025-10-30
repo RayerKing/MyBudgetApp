@@ -23,6 +23,7 @@
         </a>
         <!-- NAVIGACE PRO UŽIVATELE + ROZBALOVACÍ MENU -->
         <nav>
+            
 
             <a href="../app/dashboard.php" class="nav-icon"><i class="fa-solid fa-house"></i></a>
 

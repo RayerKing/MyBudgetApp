@@ -4,6 +4,15 @@
 <div class="tabulky">
     <h1 class="h1">Přehled</h1>
 
+    <!-- Tlačítko pro přidání transakce -->
+    <button type="button" class="add_button"><i class="fa-regular fa-square-plus"></i> Přidat transakci</button>
+
+    <?php
+
+    include "add_form.php";
+
+?>
+
 
     <div class="inner-tabulky">
         <table class="table table-sm table-hover ">

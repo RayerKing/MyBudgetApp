@@ -45,7 +45,7 @@ btnOptionMenu.addEventListener("click", (e) => {
   showOptionMenu();
 });
 
-// ==== SCRIPT PRO TIMEBAR === 
+// ==== SCRIPT PRO TIMEBAR ===
 
 // výběr měsíce + input
 const btn_month_picker = document.querySelector(".month-picker__trigger");
@@ -166,8 +166,8 @@ const previousMonth = () => {
 
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      let odpoved = this.responseText;
-      console.log(odpoved);
+      //let odpoved = this.responseText;
+      //console.log(odpoved);
       document.getElementById("wrapper").innerHTML = this.responseText;
     }
   };
@@ -186,7 +186,6 @@ btn_prev_month.addEventListener("click", previousMonth);
 
 //funkce pro nasledujici mesic
 const nextMonth = () => {
-  
   // nastvauje current date o mesic napred
   current_date.setMonth(current_date.getMonth() + 1);
   console.log("Měsíc +1");
@@ -198,11 +197,10 @@ const nextMonth = () => {
 
   let xmlhttp = new XMLHttpRequest();
 
-
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      let odpoved = this.responseText;
-      console.log(odpoved);
+      //let odpoved = this.responseText;
+      //console.log(odpoved);
       document.getElementById("wrapper").innerHTML = this.responseText;
     }
   };
@@ -222,15 +220,15 @@ btn_next_month.addEventListener("click", nextMonth);
 const vyber_mesice = () => {
   // nacteni value z inputu pro odeslani na server
   const year = month_input.value;
-  console.log(year);
+  //console.log(year);
 
   // rozbaleni inputu pro vlozeni textu do spanu
   const [rok, mesic] = month_input.value.split("-");
-  console.log([rok, mesic]);
+  //console.log([rok, mesic]);
   month_text.textContent = `${months[mesic - 1]} ${rok}`;
   current_date.setMonth(mesic - 1);
   current_date.setFullYear(rok);
-  console.log(current_date);
+  //console.log(current_date);
 
   //AJAX příprava
   let xmlhttp = new XMLHttpRequest();
@@ -248,3 +246,98 @@ const vyber_mesice = () => {
 
 // reaguj na výběr měsíce v pickeru
 month_input.addEventListener("change", vyber_mesice);
+
+// === funkce pro přidání transakce ===
+
+// funkce pro zobrazení okna
+
+add_wrap_visibility = false;
+console.log("Základ: " + add_wrap_visibility);
+
+// pokud uživatel klikne na button přidat transakci
+// funkce zobrazi modal okno pro přidání transakce
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".add_button")) {
+    const add_wrap = document.querySelector(".add_wrapper");
+    add_wrap_visibility = true;
+    add_wrap.classList.remove("hidden");
+    add_wrap.style.pointerEvents = "auto";
+    console.log("Open: " + add_wrap_visibility);
+  }
+});
+
+// když klikne mimo, modal okno zmizí
+window.addEventListener("click", (e) => {
+  const add_wrap = document.querySelector(".add_wrapper");
+  const add_button = document.querySelector(".add_button");
+  if (
+    !add_wrap.contains(e.target) &&
+    !add_button.contains(e.target) &&
+    add_wrap_visibility == true
+  ) {
+    add_wrap.classList.add("hidden");
+    add_wrap.style.pointerEvents = "none";
+    add_wrap_visibility = false;
+    console.log("Zavření: " + add_wrap_visibility);
+  }
+});
+
+//funkce pro tlačítko formuláře
+// kontrola vstupů
+// odesílání do php
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".add_button_form")) {
+    console.log("funkce pro načítání dat");
+
+    // načítání hodnot z inputu
+    const transaction_name = document.getElementById("transaction_name").value;
+    const transaction_description = document.getElementById(
+      "transaction_description"
+    ).value;
+    const transaction_value = document.getElementById("value").value;
+    const transaction_category = document.getElementById(
+      "transaction_category"
+    ).value;
+    const transaction_date = document.getElementById("transaction_date").value;
+
+    // kontrola prázných a záporných vstupů
+    if (
+      transaction_name == "" ||
+      transaction_date == "" ||
+      transaction_value == ""
+    ) {
+      alert("Něco jsi zapomněl vyplnit. :)");
+    } else if (transaction_value <= 0) {
+      alert("Value musí být více než 0");
+    } else {
+      // příprava dat pro php
+      const formattedFormData = new FormData();
+      formattedFormData.append("transaction_name", transaction_name);
+      formattedFormData.append(
+        "transaction_description",
+        transaction_description
+      );
+      formattedFormData.append("transaction_value", transaction_value);
+      formattedFormData.append("transaction_category", transaction_category);
+      formattedFormData.append("transaction_date", transaction_date);
+
+      postData(formattedFormData);
+
+      async function postData(formattedFormData) {
+        try {
+          const response = await fetch("../app/actions/add.php", {
+            method: "POST",
+            body: formattedFormData,
+          });
+          const data = await response.text();
+          console.log("DATA jsou: " + data);
+          window.location.reload();
+        } catch (error) {
+          alert("Něco se nepovedlo: " + error);
+        }
+      }
+    }
+
+    document.querySelector(".add_wrapper").classList.add("hidden");
+  }
+});

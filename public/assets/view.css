@@ -19,7 +19,8 @@
   color: #cbd5e1;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.06s ease;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    transform 0.06s ease;
 }
 #option-menu:hover {
   color: #fff;
@@ -45,7 +46,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   box-shadow: 0 12px 28px rgba(17, 24, 39, 0.18),
-              0 2px 6px rgba(17, 24, 39, 0.08);
+    0 2px 6px rgba(17, 24, 39, 0.08);
   padding: 8px;
   z-index: 1000;
   opacity: 0;
@@ -153,7 +154,8 @@
   width: 42px;
   height: 42px;
   border-radius: 8px;
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.06s ease;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    transform 0.06s ease;
 }
 .nav-icon:hover {
   color: #fff;
@@ -199,7 +201,10 @@ header nav {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .rozbalovaciOkno, #option-menu { transition: none; }
+  .rozbalovaciOkno,
+  #option-menu {
+    transition: none;
+  }
 }
 
 /* ==========================================================
@@ -213,12 +218,16 @@ header nav {
   --primary: #2563eb;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 body {
   background: #f9fafb;
   color: var(--ink);
 }
-.hidden { display: none !important; }
+.hidden {
+  display: none !important;
+}
 
 .btn {
   border: 1px solid var(--border);
@@ -244,7 +253,9 @@ body {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
-.btn-primary { border-color: var(--primary); }
+.btn-primary {
+  border-color: var(--primary);
+}
 
 /* ==========================================================
    🔹 TIMEBAR / KALENDÁŘ
@@ -258,8 +269,8 @@ body {
   border-radius: 14px;
   padding: 12px;
   margin: 0 auto 24px;
-  max-width: 800px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  max-width: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* --- Titulek --- */
@@ -308,7 +319,7 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 8px 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   margin: 0;
 }
 
@@ -320,7 +331,6 @@ body {
   background: #f3f4f6;
   border-radius: 10px;
 }
-
 
 .timebar__range {
   position: relative;
@@ -351,9 +361,11 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
-.range-panel * { box-sizing: border-box; }
+.range-panel * {
+  box-sizing: border-box;
+}
 
 .range-panel__field {
   display: flex;
@@ -409,14 +421,26 @@ body {
 /* ==========================================================
    🔹 TABULKY
    ========================================================== */
+
+.tabulky {
+  position: relative;
+  border: 0;
+  background: var(--panel);
+  border-radius: 14px;
+  padding: 12px;
+  margin: 0 auto 24px;
+  max-width: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Hlavní nadpis sekce */
 .tabulky > h1 {
   text-align: center;
   font-weight: 700;
   font-size: clamp(1.8rem, 1.2rem + 1vw, 2.4rem);
-  margin: 32px auto 28px;
+  margin: 10px auto 28px;
   color: #111827;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
 /* GRID */
@@ -427,9 +451,21 @@ body {
   margin-top: 20px;
   align-items: start;
 }
-@media (max-width: 1200px){ .inner-tabulky{ grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 900px) { .inner-tabulky{ grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .inner-tabulky{ grid-template-columns: 1fr; } }
+@media (max-width: 1200px) {
+  .inner-tabulky {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .inner-tabulky {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .inner-tabulky {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* Karta tabulky */
 .inner-tabulky .table {
@@ -437,7 +473,7 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 16px;
   background: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   overflow: hidden;
 }
 
@@ -452,14 +488,14 @@ body {
   border-bottom: 1px solid #e5e7eb;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  letter-spacing: .3px;
+  letter-spacing: 0.3px;
 }
 
 /* Buňky */
 .inner-tabulky .table th,
 .inner-tabulky .table td {
   padding: 8px 12px;
-  font-size: .95rem;
+  font-size: 0.95rem;
   text-align: center;
   vertical-align: middle;
 }
@@ -481,14 +517,14 @@ body {
   align-items: center;
   padding: 8px 20px;
   font-weight: 600;
-  font-size: .95rem;
+  font-size: 0.95rem;
   color: #fff;
   background: #3b82f6;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: all .2s ease;
-  box-shadow: 0 3px 6px rgba(0,0,0,.1);
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   white-space: nowrap;
 }
 .inner-tabulky .table tfoot button:hover {
@@ -497,4 +533,90 @@ body {
 }
 .inner-tabulky .table tfoot button:active {
   transform: translateY(1px);
+}
+
+.add_button {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+
+  background-color: #3b82f6; 
+  color: #fff;
+  border: solid blue 2px;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+.add_button i {
+  font-size: 1.2rem;
+}
+
+.add_button:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.add_wrapper {
+  position: fixed;           /* zůstane nad obsahem */
+  top: 50%;                  /* posun doprostřed vertikálně */
+  left: 50%;                 /* posun doprostřed horizontálně */
+  transform: translate(-50%, -50%); /* vyrovná střed */
+  background-color: #ffffff; /* bílý podklad */
+  padding: 2rem 2.5rem;
+  border: solid 1px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  z-index: 999;              /* nad vším ostatním */
+  width: 400px;
+  max-width: 90%;            /* na menších displejích přizpůsobí */
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* vstupy */
+.add_wrapper input,
+.add_wrapper select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.add_wrapper input:focus,
+.add_wrapper select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* tlačítko */
+.add_wrapper button {
+  margin-top: 1rem;
+  align-self: center;
+  background-color: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.add_wrapper button:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
 }
