@@ -23,6 +23,13 @@ include "partials/header.php";
 include "actions/set_tables.php"
 
 ?>
+
+<?php
+
+include "views/bubbles.php";
+
+?>
+
 <div id="wrapper">
 
     <?php

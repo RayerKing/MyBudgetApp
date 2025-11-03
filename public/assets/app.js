@@ -172,14 +172,18 @@ const previousMonth = () => {
     }
   };
 
+  let sending_date = current_year + "-" + current_month;
+
   // připravuje konkrétní hodnotu
   xmlhttp.open(
     "GET",
-    "controller/tables_control.php?month=" + current_year + "-" + current_month,
+    "controller/tables_control.php?month=" + sending_date,
     true
   );
   // odesílá připravené hodnoty
   xmlhttp.send();
+
+  load_sums(sending_date);
 };
 
 btn_prev_month.addEventListener("click", previousMonth);
@@ -205,13 +209,17 @@ const nextMonth = () => {
     }
   };
 
+  let sending_date = current_year + "-" + current_month;
+
   // priprava dat k odeslani
   xmlhttp.open(
     "GET",
-    "controller/tables_control.php?month=" + current_year + "-" + current_month,
+    "controller/tables_control.php?month=" + sending_date,
     true
   );
   xmlhttp.send();
+
+  load_sums(sending_date);
 };
 
 btn_next_month.addEventListener("click", nextMonth);
@@ -240,8 +248,11 @@ const vyber_mesice = () => {
   };
 
   xmlhttp.open("GET", "controller/tables_control.php?month=" + year, true);
+
   xmlhttp.send();
   month_input.classList.add("hidden");
+
+  load_sums(year);
 };
 
 // reaguj na výběr měsíce v pickeru
@@ -341,3 +352,129 @@ document.addEventListener("click", (e) => {
     document.querySelector(".add_wrapper").classList.add("hidden");
   }
 });
+
+// ===============
+// === Bubliny ===
+// ===============
+
+// proměnné pro uchování hodnot
+let income_number;
+let expense_number;
+let balance_number;
+
+let jiz_vycerpano;
+let jeste_zbyva;
+let podminka_velikosti;
+let data;
+
+// asynchornní funkce, načítá data z databáze a na základě toho mění bubliny 
+async function load_sums(yearMonth) {
+  const response = await fetch("../app/actions/summary.php?month=" + yearMonth);
+  data = await response.json();
+
+  prehled_expense = true;
+  prehled_balance = true;
+
+  load_text();
+}
+
+// proměnná pro vstupní měsíc při prvním načtení
+let first_month =
+  current_date.getFullYear() +
+  "-" +
+  String(current_date.getMonth() + 1).padStart(2, "0");
+
+let first_loading = true;
+
+// asynchronní funkce, zařizuje první načtení stránky
+async function first_load(first_month) {
+  if (first_loading) {
+    const response = await fetch(
+      "../app/actions/summary.php?month=" + first_month
+    );
+    data = await response.json();
+
+    load_text();
+
+    first_loading = false;
+    console.log("First loading je: " + first_loading);
+  } else {
+    console.log("First loading je: " + first_loading);
+
+    return;
+  }
+}
+
+// funkce, která mění hodnoity v bublinách
+const load_text = () => {
+  podminka_velikosti =
+    Number(data.income) > Number(data.expense) ? true : false;
+
+  jiz_vycerpano = ((data.expense * 100) / data.income).toFixed(1);
+
+  let income_bubble = document.getElementById("income_bubble");
+  let expense_bubble = document.getElementById("expense_bubble");
+  let balance_bubble = document.getElementById("balance_bubble");
+
+  // přepsání čísla do formátu 
+  const formatted = new Intl.NumberFormat("cs-CZ", {
+    style: "currency",
+    currency: "CZK",
+  });
+
+  income_number = formatted.format(data.income ?? 0);
+  expense_number = formatted.format(data.expense ?? 0);
+  balance_number = formatted.format(data.balance ?? 0);
+
+  income_bubble.textContent = income_number;
+  expense_bubble.textContent = expense_number;
+  balance_bubble.textContent = balance_number;
+};
+
+const btn_expense = document.getElementById("btn_expense");
+const btn_balance = document.getElementById("btn_balance");
+
+let prehled_expense = true;
+let prehled_balance = true;
+
+// funkce pro klik na bublinu výdajů
+const expense_function = () => {
+  // kontrola podmínky, zda income je větší než expense
+  if (podminka_velikosti) {
+
+    // podmínka modu: vizuál číselné hodnoty, nebo procent
+    if (prehled_expense) {
+      expense_bubble.textContent = jiz_vycerpano + " %";
+      prehled_expense = false;
+    } else {
+      expense_bubble.textContent = expense_number;
+      prehled_expense = true;
+    }
+  } else {
+    console.log("nesplněna podmínka");
+
+    return;
+  }
+};
+
+// funkce pro klik na bublinu výdajů
+const balance_function = () => {
+  // kontrola podmínky, zda income je větší než expense
+  if (podminka_velikosti) {
+    // podmínka modu: vizuál číselné hodnoty, nebo procent
+    if (prehled_balance) {
+      balance_bubble.textContent = (100 - jiz_vycerpano).toFixed(1) + " %";
+      prehled_balance = false;
+    } else {
+      balance_bubble.textContent = balance_number;
+      prehled_balance = true;
+    }
+  } else {
+    return;
+  }
+};
+
+btn_expense.addEventListener("click", expense_function);
+btn_balance.addEventListener("click", balance_function);
+
+first_load(first_month);

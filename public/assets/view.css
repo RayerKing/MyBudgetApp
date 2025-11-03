@@ -620,3 +620,78 @@ body {
   background-color: #2563eb;
   transform: translateY(-1px);
 }
+/* =====================*/
+/* === Bubbles styly ===*/
+/* =====================*/
+
+
+.bubble_flex {
+  display: flex;
+  justify-content: center;    
+  align-items: center;         
+  gap: 30px;                   
+  margin-bottom: 15px;
+  
+}
+
+
+.bubble-inner-flex {
+  width: 160px;
+  height: 160px;
+  border-radius: 40%;
+  border: 20px solid;          
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(196, 190, 190);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e5e7eb;             
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+
+.bubble-inner-flex:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,255,255,0.15);
+}
+
+
+
+
+@media (max-width: 700px) {
+  .bubble_flex {
+    flex-direction: column;
+    gap: 25px;
+    height: auto;
+    padding: 40px 0;
+  }
+}
+
+.bubbles{
+  border: 0;
+  background: var(--panel);
+  border-radius: 14px;
+  padding: 12px;
+  margin: 0 auto 24px;
+  max-width: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bubble-income{
+  border-color: green;
+}
+
+.bubble-expense {
+  border-color: red;
+}
+
+.bubble-balance {
+  border-color: blue;
+}
+
+.bubble_text {
+  color: black;
+}
+
+

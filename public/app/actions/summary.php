@@ -1,8 +1,11 @@
 <?php
-
+// stejné pro set_tables, hlídá, aby se shodovalo datum
 // === LOGIKA PRO TVORBU TABULEK ===
+if (!isset($_SESSION)) {
+    session_start();
+}
 
-require_once __DIR__ . '/../../../config/database.php';
+require_once __DIR__ . "../../../../config/database.php";
 
 
 ?>
@@ -78,5 +81,53 @@ foreach ($category as $x) {
     $res->free();
 }
 $stmt->close();
+?>
+
+
+<?php
+// vypočítání všech příjmů
+$plus_value = "plus";
+$stmt = $connection->prepare('SELECT SUM(value) FROM transactions WHERE user_id = ? AND kind = ? AND
+transaction_date BETWEEN ? AND ?');
+$stmt->bind_param("isss", $_SESSION["id"], $plus_value, $start, $end);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$row = $result->fetch_row();
+$sum_plus_value = $row[0];
+$stmt->close();
+
+
+// vypočítání všech výdajů
+$minus_value = "minus";
+$stmt = $connection->prepare('SELECT SUM(value) FROM transactions WHERE user_id = ? AND kind = ? AND
+transaction_date BETWEEN ? AND ?');
+$stmt->bind_param("isss", $_SESSION["id"], $minus_value, $start, $end);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$row = $result->fetch_row();
+$sum_minus_value = $row[0];
+$stmt->close();
+
+
+
+// vypočítaný rozdíl
+$balance = $sum_plus_value - $sum_minus_value;
+
+// zápis pro javascript
+header("content-Type: application/json");
+echo json_encode([
+    "month" => $month,
+    "income" => $sum_plus_value,
+    "expense" => $sum_minus_value,
+    "balance" => $balance
+]);
+
+exit;
+
+
+
+
 ?>
 
