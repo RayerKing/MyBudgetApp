@@ -1,4 +1,6 @@
-// === SCRIPT PRO MENU UŽIVATELKE ===
+// =================================
+// === SCRIPT PRO MENU UŽIVATELE ===
+// ==================================
 
 const optionMenu = document.querySelector(".rozbalovaciOkno");
 const btnOptionMenu = document.getElementById("option-menu");
@@ -45,7 +47,9 @@ btnOptionMenu.addEventListener("click", (e) => {
   showOptionMenu();
 });
 
-// ==== SCRIPT PRO TIMEBAR ===
+// ===========================
+// ==== SCRIPT PRO TIMEBAR Na hlavní stránce===
+// ===========================
 
 // výběr měsíce + input
 const btn_month_picker = document.querySelector(".month-picker__trigger");
@@ -55,7 +59,11 @@ const month_input = document.getElementById("month-input");
 let visibleMonthPicker = false;
 
 // podmínka pro zobrazení month pickeru
-btn_month_picker.addEventListener("click", (e) => {
+btn_month_picker?.addEventListener("click", (e) => {
+  const over_view_table = document.querySelector(".overview_table");
+  if (over_view_table) {
+    return;
+  }
   e.preventDefault();
   visibleMonthPicker = true;
   console.log("Výběr měsíce");
@@ -65,6 +73,10 @@ btn_month_picker.addEventListener("click", (e) => {
 
 // když klikne mimo talčítko a div , zavře výběr měsíce
 window.addEventListener("click", (e) => {
+  const over_view_table = document.querySelector(".overview_table");
+  if (over_view_table) {
+    return;
+  }
   if (
     !month_input.contains(e.target) &&
     !btn_month_picker.contains(e.target) &&
@@ -95,10 +107,14 @@ const open_range = (e) => {
   console.log(visibleOdDo);
 };
 
-btn_range.addEventListener("click", open_range);
+btn_range?.addEventListener("click", open_range);
 
 // když klikne mimo talčítko a div , zavře výběr od do
 window.addEventListener("click", (e) => {
+  const over_view_table = document.querySelector(".overview_table");
+  if (over_view_table) {
+    return;
+  }
   if (
     !range_div.contains(e.target) &&
     !btn_range.contains(e.target) &&
@@ -137,6 +153,7 @@ const month_text = document.getElementById("month-text");
 
 // aktualizace textu roku a mesice
 const updateMonth = () => {
+  if (!month_text) return;
   month_text.textContent = `${
     months[current_date.getMonth()]
   } ${current_date.getFullYear()}`;
@@ -186,7 +203,7 @@ const previousMonth = () => {
   load_sums(sending_date);
 };
 
-btn_prev_month.addEventListener("click", previousMonth);
+btn_prev_month?.addEventListener("click", previousMonth);
 
 //funkce pro nasledujici mesic
 const nextMonth = () => {
@@ -222,7 +239,7 @@ const nextMonth = () => {
   load_sums(sending_date);
 };
 
-btn_next_month.addEventListener("click", nextMonth);
+btn_next_month?.addEventListener("click", nextMonth);
 
 // funkce pro vyber konkretniho mesice
 const vyber_mesice = () => {
@@ -256,9 +273,11 @@ const vyber_mesice = () => {
 };
 
 // reaguj na výběr měsíce v pickeru
-month_input.addEventListener("change", vyber_mesice);
+month_input?.addEventListener("change", vyber_mesice);
 
+// ====================================
 // === funkce pro přidání transakce ===
+// ====================================
 
 // funkce pro zobrazení okna
 
@@ -281,6 +300,10 @@ document.addEventListener("click", (e) => {
 window.addEventListener("click", (e) => {
   const add_wrap = document.querySelector(".add_wrapper");
   const add_button = document.querySelector(".add_button");
+  const overview_table = document.querySelector(".overview_table");
+  if (overview_table) {
+    return;
+  }
   if (
     !add_wrap.contains(e.target) &&
     !add_button.contains(e.target) &&
@@ -367,7 +390,7 @@ let jeste_zbyva;
 let podminka_velikosti;
 let data;
 
-// asynchornní funkce, načítá data z databáze a na základě toho mění bubliny 
+// asynchornní funkce, načítá data z databáze a na základě toho mění bubliny
 async function load_sums(yearMonth) {
   const response = await fetch("../app/actions/summary.php?month=" + yearMonth);
   data = await response.json();
@@ -407,16 +430,19 @@ async function first_load(first_month) {
 
 // funkce, která mění hodnoity v bublinách
 const load_text = () => {
+  let income_bubble = document.getElementById("income_bubble");
+  if (!income_bubble) {
+    return;
+  }
   podminka_velikosti =
     Number(data.income) > Number(data.expense) ? true : false;
 
   jiz_vycerpano = ((data.expense * 100) / data.income).toFixed(1);
 
-  let income_bubble = document.getElementById("income_bubble");
   let expense_bubble = document.getElementById("expense_bubble");
   let balance_bubble = document.getElementById("balance_bubble");
 
-  // přepsání čísla do formátu 
+  // přepsání čísla do formátu
   const formatted = new Intl.NumberFormat("cs-CZ", {
     style: "currency",
     currency: "CZK",
@@ -441,7 +467,6 @@ let prehled_balance = true;
 const expense_function = () => {
   // kontrola podmínky, zda income je větší než expense
   if (podminka_velikosti) {
-
     // podmínka modu: vizuál číselné hodnoty, nebo procent
     if (prehled_expense) {
       expense_bubble.textContent = jiz_vycerpano + " %";
@@ -474,7 +499,188 @@ const balance_function = () => {
   }
 };
 
-btn_expense.addEventListener("click", expense_function);
-btn_balance.addEventListener("click", balance_function);
+btn_expense?.addEventListener("click", expense_function);
+btn_balance?.addEventListener("click", balance_function);
 
 first_load(first_month);
+
+// =================================
+// === Scripty pro overview page ===
+// =================================
+
+const overview_months = [
+  "Leden",
+  "Únor",
+  "Březen",
+  "Duben",
+  "Květen",
+  "Červen",
+  "Červenec",
+  "Srpen",
+  "Září",
+  "Říjen",
+  "Listopad",
+  "Prosinec",
+];
+
+// načtení dat z url pro zjištění, v jakém měsíci se uživatel nacházel
+const params = new URLSearchParams(window.location.search);
+
+const monthFromUrl = params.get("month");
+
+// vytvoření proměnné do řádného tvaru
+let [overview_year, overview_month] = (monthFromUrl || "").split("-");
+
+overview_year = parseInt(overview_year);
+overview_month = parseInt(overview_month) - 1;
+
+// vytvoření nového datumu
+let overview_current_date = new Date(overview_year, overview_month, 1);
+
+const overview_month_text = document.getElementById("overiew_month-text");
+
+if (overview_month_text) {
+  overview_month_text.textContent = `${overview_months[overview_month]} ${overview_year}`;
+}
+
+const overview_prev_month = document.getElementById("overview_prev-month");
+
+// funkce pro šipku, která načte předchozí měsíc
+const over_view_previous_month = () => {
+  overview_current_date.setMonth(overview_current_date.getMonth() - 1);
+  
+  overview_update_timebar();
+
+  let current_month = String(overview_current_date.getMonth() + 1).padStart(
+    2,
+    "0"
+  );
+  let current_year = overview_current_date.getFullYear();
+
+  let year = current_year + "-" + current_month;
+  
+
+  //AJAX příprava
+  let xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("overview_wrapper").innerHTML = this.responseText;
+    }
+  };
+
+  xmlhttp.open("GET", "controller/month_control.php?month=" + year, true);
+
+  xmlhttp.send();
+};
+
+const overview_next_month = document.getElementById("overview_next-month");
+
+// funkce, která načte následující měsíc
+const over_view_next_month = () => {
+  overview_current_date.setMonth(overview_current_date.getMonth() + 1);
+ 
+  overview_update_timebar();
+
+  let current_month = String(overview_current_date.getMonth() + 1).padStart(
+    2,
+    "0"
+  );
+  let current_year = overview_current_date.getFullYear();
+
+  let year = current_year + "-" + current_month;
+  
+
+  //AJAX příprava
+  let xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("overview_wrapper").innerHTML = this.responseText;
+    }
+  };
+
+  xmlhttp.open("GET", "controller/month_control.php?month=" + year, true);
+
+  xmlhttp.send();
+};
+
+// pro aktualizaci textu měsíce a roku
+const overview_update_timebar = () => {
+  overview_month_text.textContent = `${
+    overview_months[overview_current_date.getMonth()]
+  } ${overview_current_date.getFullYear()}`;
+};
+
+// listenery na šipkách
+overview_next_month?.addEventListener("click", over_view_next_month);
+overview_prev_month?.addEventListener("click", over_view_previous_month);
+
+const btn_overview_month_picker = document.querySelector(".overview_month-picker__trigger");
+const overview_input_month = document.getElementById("overview_month-input");
+
+let overview_visibleMonthPicker = false;
+
+// pro zobrazení výběru měsíce
+btn_overview_month_picker?.addEventListener("click", (e) => {
+  const over_view_table = document.querySelector(".overview_table");
+  if (!over_view_table) {
+    return;
+  }
+  e.preventDefault();
+  overview_visibleMonthPicker = true;
+  console.log("Overview = Výběr měsíce");
+  overview_input_month.classList.remove("hidden");
+  overview_input_month.focus();
+});
+
+// zavření zobrazení měsíce
+window.addEventListener("click", (e) => {
+  const over_view_table = document.querySelector(".overview_table");
+  if (!over_view_table) {
+    return;
+  }
+  if (
+    !overview_input_month.contains(e.target) &&
+    !btn_overview_month_picker.contains(e.target) &&
+    overview_visibleMonthPicker == true
+  ) {
+    overview_input_month.classList.add("hidden");
+    overview_visibleMonthPicker = false;
+    console.log("Schovej měsíc");
+  }
+});
+
+// funkce pro vyber konkretniho mesice
+const overview_vyber_mesice = () => {
+  // nacteni value z inputu pro odeslani na server
+  const year = overview_input_month.value;
+  
+
+  // rozbaleni inputu pro vlozeni textu do spanu
+  const [rok, mesic] = overview_input_month.value.split("-");
+  
+  overview_month_text.textContent = `${overview_months[mesic - 1]} ${rok}`;
+  overview_current_date.setMonth(mesic - 1);
+  overview_current_date.setFullYear(rok);
+  
+
+  //AJAX příprava
+  let xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("overview_wrapper").innerHTML = this.responseText;
+    }
+  };
+
+  xmlhttp.open("GET", "controller/month_control.php?month=" + year, true);
+
+  xmlhttp.send();
+  overview_input_month.classList.add("hidden");
+
+  
+};
+
+// reaguj na výběr měsíce v pickeru
+overview_input_month?.addEventListener("change", overview_vyber_mesice);

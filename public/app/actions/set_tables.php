@@ -79,4 +79,3 @@ foreach ($category as $x) {
 }
 $stmt->close();
 ?>
-

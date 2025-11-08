@@ -18,7 +18,7 @@
             <option value="zabava">Zábava</option>
             <option value="najem">Bydlení</option>
             <option value="prijem">Příjem</option>
-            <option value="spoření">Spoření</option>
+            <option value="sporeni">Spoření</option>
         </select>
 
         <label for="transaction_date">Datum transakce *</label>

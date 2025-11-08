@@ -59,7 +59,7 @@
                     <tfoot>
                         <tr>
                             <td>
-                                <button class="btn btn-primary btn-sm">Zobrazit všechny</button>
+                                <a href="../app/overview.php?month=<?= urlencode($month) ?>" target="_blank" class="btn btn-primary btn-sm">Zobrazit všechny</a>
                             </td>
                         </tr>
                     </tfoot>
