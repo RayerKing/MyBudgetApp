@@ -1,7 +1,7 @@
 # 💰 MyBudgetApp
 
 **MyBudgetApp** je osobní webová aplikace pro správu rozpočtu postavená na **PHP**, **MySQL** a **JavaScriptu (AJAX)**.  
-Umožňuje uživateli sledovat příjmy, výdaje a přehledně filtrovat transakce podle zvoleného měsíce nebo období.  
+Umožňuje uživateli sledovat příjmy, výdaje a filtrovat transakce podle měsíce nebo období – **bez přenačítání celé stránky**.
 
 ---
 
@@ -19,6 +19,8 @@ Umožňuje uživateli sledovat příjmy, výdaje a přehledně filtrovat transak
   - Přehled rozdělený podle kategorií (např. Doprava, Jídlo, Zábava…)
   - Automatické vypočítání časového rozsahu aktuálního měsíce
   - Zobrazení posledních 3 záznamů s možností rozbalit všechny
+  - Možnost přidat novou transakci
+  - Početní **Bubliny** pro výpočet peněz
 
 - 📅 **Interaktivní výběr období**
   - Výběr konkrétního měsíce pomocí `input type="month"`
@@ -65,6 +67,8 @@ Umožňuje uživateli sledovat příjmy, výdaje a přehledně filtrovat transak
 ✅ Dynamická změna dat přes **AJAX bez reloadu stránky**  
 ✅ Přehledné a čisté rozdělení kódu (MVC-like struktura)
 ✅ Přidání transakcí do databáze
+✅ Vypsání všech transakcí v daném měsíci
+✅ Smazání z volené transakce
 
 ---
 

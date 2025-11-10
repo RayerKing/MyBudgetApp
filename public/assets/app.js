@@ -548,7 +548,7 @@ const overview_prev_month = document.getElementById("overview_prev-month");
 // funkce pro šipku, která načte předchozí měsíc
 const over_view_previous_month = () => {
   overview_current_date.setMonth(overview_current_date.getMonth() - 1);
-  
+
   overview_update_timebar();
 
   let current_month = String(overview_current_date.getMonth() + 1).padStart(
@@ -558,7 +558,6 @@ const over_view_previous_month = () => {
   let current_year = overview_current_date.getFullYear();
 
   let year = current_year + "-" + current_month;
-  
 
   //AJAX příprava
   let xmlhttp = new XMLHttpRequest();
@@ -579,7 +578,7 @@ const overview_next_month = document.getElementById("overview_next-month");
 // funkce, která načte následující měsíc
 const over_view_next_month = () => {
   overview_current_date.setMonth(overview_current_date.getMonth() + 1);
- 
+
   overview_update_timebar();
 
   let current_month = String(overview_current_date.getMonth() + 1).padStart(
@@ -589,7 +588,6 @@ const over_view_next_month = () => {
   let current_year = overview_current_date.getFullYear();
 
   let year = current_year + "-" + current_month;
-  
 
   //AJAX příprava
   let xmlhttp = new XMLHttpRequest();
@@ -616,7 +614,9 @@ const overview_update_timebar = () => {
 overview_next_month?.addEventListener("click", over_view_next_month);
 overview_prev_month?.addEventListener("click", over_view_previous_month);
 
-const btn_overview_month_picker = document.querySelector(".overview_month-picker__trigger");
+const btn_overview_month_picker = document.querySelector(
+  ".overview_month-picker__trigger"
+);
 const overview_input_month = document.getElementById("overview_month-input");
 
 let overview_visibleMonthPicker = false;
@@ -655,15 +655,13 @@ window.addEventListener("click", (e) => {
 const overview_vyber_mesice = () => {
   // nacteni value z inputu pro odeslani na server
   const year = overview_input_month.value;
-  
 
   // rozbaleni inputu pro vlozeni textu do spanu
   const [rok, mesic] = overview_input_month.value.split("-");
-  
+
   overview_month_text.textContent = `${overview_months[mesic - 1]} ${rok}`;
   overview_current_date.setMonth(mesic - 1);
   overview_current_date.setFullYear(rok);
-  
 
   //AJAX příprava
   let xmlhttp = new XMLHttpRequest();
@@ -678,9 +676,75 @@ const overview_vyber_mesice = () => {
 
   xmlhttp.send();
   overview_input_month.classList.add("hidden");
-
-  
 };
 
 // reaguj na výběr měsíce v pickeru
 overview_input_month?.addEventListener("change", overview_vyber_mesice);
+
+// ====================================
+// === Logika pro smazání transakce ===
+// ====================================
+
+const wrapper = document.getElementById("overview_wrapper");
+
+// listener, když kliknu na tlačítko smazat
+wrapper?.addEventListener("click", (e) => {
+  // načtení tlačítka, na které jsme kliknuli
+  const btn_delete = e.target.closest(".btn_delete");
+
+  // řádek, ve kterém je kliknuté tlačítko
+  const tr = e.target.closest(".overview_tr");
+
+  // tbody dané tabulky
+  const tbody = tr.closest("tbody");
+
+  // pokud není tlačítko, nic nedělej
+  if (!btn_delete) {
+    return;
+  }
+
+  // načtení id transakce přes data-id na tlačítku v tabulce
+  const transaction_id = btn_delete.dataset.id;
+  console.log("Transaction_id: " + transaction_id);
+
+  // fetch transaction id do dotazu
+  // příprava dat pro php
+  const formData = new FormData();
+  formData.append("transaction_data_id", transaction_id);
+
+  postData(formData);
+
+  async function postData(formData) {
+    try {
+      const response = await fetch("../app/actions/delete.php", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      console.log(data);
+
+      console.log("DATA.ok je: " + data.ok);
+
+      // pokud vše ok, daný řádek se odstraní
+      if (data.ok) {
+        tr.remove();
+      }
+
+      // získání počtu řádků v tbody
+      const length = tbody.rows.length;
+      console.log("Velikost tbody je: " + length);
+
+      // velikost == 0 => co se stane
+      if (length == 0) {
+
+        // vytvoří řádek s textem a parametry
+        const empty_tr = document.createElement("tr");
+        empty_tr.classList.add("overview_tr");
+        empty_tr.innerHTML = `<td colspan = 6>V tabulce nejsou žádné transakce</td>`;
+        tbody.append(empty_tr);
+      }
+    } catch (error) {
+      alert("Něco se nepovedlo: " + error);
+    }
+  }
+});

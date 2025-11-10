@@ -39,21 +39,21 @@
                     <td><?= htmlspecialchars($x["name"]) ?></td>
                     <td><?= htmlspecialchars($x["description"]) ?></td>
                     <?php
-                    if(htmlspecialchars($x["category"]) == "doprava"): ?>
-                    <td>Doprava</td>
-                    <?php elseif(htmlspecialchars($x["category"]) == "jidlo"): ?>
+                    if (htmlspecialchars($x["category"]) == "doprava"): ?>
+                        <td>Doprava</td>
+                    <?php elseif (htmlspecialchars($x["category"]) == "jidlo"): ?>
                         <td>Potraviny</td>
-                        <?php elseif(htmlspecialchars($x["category"]) == "zabava"): ?>
-                            <td>Zábava</td>
-                            <?php elseif(htmlspecialchars($x["category"]) == "najem"): ?>
-                            <td>Bydlení</td>
-                            <?php elseif(htmlspecialchars($x["category"]) == "prijem"): ?>
-                            <td>Příjem</td>
-                            <?php elseif(htmlspecialchars($x["category"]) == "sporeni"): ?>
-                            <td>Spoření</td>
-                            <?php elseif(htmlspecialchars($x["category"]) == "ostatni"): ?>
-                            <td>Ostatní</td>
-                            <?php endif ?>
+                    <?php elseif (htmlspecialchars($x["category"]) == "zabava"): ?>
+                        <td>Zábava</td>
+                    <?php elseif (htmlspecialchars($x["category"]) == "najem"): ?>
+                        <td>Bydlení</td>
+                    <?php elseif (htmlspecialchars($x["category"]) == "prijem"): ?>
+                        <td>Příjem</td>
+                    <?php elseif (htmlspecialchars($x["category"]) == "sporeni"): ?>
+                        <td>Spoření</td>
+                    <?php elseif (htmlspecialchars($x["category"]) == "ostatni"): ?>
+                        <td>Ostatní</td>
+                    <?php endif ?>
 
 
 
@@ -71,10 +71,12 @@
                             </em></td>
                     <?php endif ?>
                     <td><?= htmlspecialchars($x["transaction_date"]) ?></td>
-                    <td class="overview_button_flex"><button data-id='<?= htmlspecialchars($x["id"]) ?>' class="overview_buttons btn_edit"><i class="fa-solid fa-pencil"></i></button>
-                    <button id='<?= htmlspecialchars($x["id"]) ?>' class="overview_buttons btn_delete"><i class="fa-solid fa-xmark"></i></button></td>
+                    <td class="overview_button_flex">
+                        <button type="button" data-id='<?= htmlspecialchars($x["id"]) ?>' class="overview_buttons btn_edit"><i class="fa-solid fa-pencil"></i></button>
+                        <button type="button" data-id='<?= htmlspecialchars($x["id"]) ?>' class="overview_buttons btn_delete"><i class="fa-solid fa-xmark"></i></button>
+                    </td>
                 </tr>
-               
+
 
             <?php endforeach ?>
 
