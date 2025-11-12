@@ -69,6 +69,7 @@ Umožňuje uživateli sledovat příjmy, výdaje a filtrovat transakce podle mě
 ✅ Přidání transakcí do databáze
 ✅ Vypsání všech transakcí v daném měsíci
 ✅ Smazání z volené transakce
+✅ Edit z volené transakce
 
 ---
 

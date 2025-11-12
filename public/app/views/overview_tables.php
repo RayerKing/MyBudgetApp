@@ -2,6 +2,11 @@
 <!-- === HTML STRUKTURA PRO VYKRESLENÍ tabulky pro overview === -->
 <!-- ========================================================== -->
 
+<?php
+
+include "edit_form.php";
+
+?>
 
 <table class="overview_table">
     <thead class="overview_thead">
@@ -35,25 +40,29 @@
             foreach ($rows as $x):
 
             ?>
-                <tr class="overview_tr">
-                    <td><?= htmlspecialchars($x["name"]) ?></td>
-                    <td><?= htmlspecialchars($x["description"]) ?></td>
-                    <?php
-                    if (htmlspecialchars($x["category"]) == "doprava"): ?>
-                        <td>Doprava</td>
+                <tr class="overview_tr" data-name="<?= htmlspecialchars($x["name"]) ?>"
+                    data-description="<?= htmlspecialchars($x["description"]) ?>"
+                    data-category="<?= htmlspecialchars($x["category"]) ?>"
+                    data-value="<?= htmlspecialchars(number_format($x["value"], 0, ',', ' ')) ?>"
+                    data-date="<?= htmlspecialchars($x["transaction_date"]) ?>">
+                    <td><span id="td_name"><?= htmlspecialchars($x["name"]) ?></span></td>
+                    <td><span id="td_description"><?= htmlspecialchars($x["description"]) ?></span></td>
+                    <?php if (htmlspecialchars($x["category"]) == "doprava"): ?>
+                        <td><span class="td_category">Doprava</span></td>
                     <?php elseif (htmlspecialchars($x["category"]) == "jidlo"): ?>
-                        <td>Potraviny</td>
+                        <td><span class="td_category">Potraviny</span></td>
                     <?php elseif (htmlspecialchars($x["category"]) == "zabava"): ?>
-                        <td>Zábava</td>
+                        <td><span class="td_category">Zábava</span></td>
                     <?php elseif (htmlspecialchars($x["category"]) == "najem"): ?>
-                        <td>Bydlení</td>
+                        <td><span class="td_category">Bydlení</span></td>
                     <?php elseif (htmlspecialchars($x["category"]) == "prijem"): ?>
-                        <td>Příjem</td>
+                        <td><span class="td_category">Příjem</span></td>
                     <?php elseif (htmlspecialchars($x["category"]) == "sporeni"): ?>
-                        <td>Spoření</td>
+                        <td><span class="td_category">Spoření</span></td>
                     <?php elseif (htmlspecialchars($x["category"]) == "ostatni"): ?>
-                        <td>Ostatní</td>
-                    <?php endif ?>
+                        <td><span class="td_category">Ostatní</span></td>
+                    <?php endif; ?>
+
 
 
 
@@ -61,16 +70,16 @@
                     if ($x["kind"] == "plus"):
                     ?>
                         <td>
-                            <em class="green_number">+ <?= htmlspecialchars(number_format($x["value"], 0, ',', ' ')) ?>
-                            </em>
+                            <span class="td_value"><em class="green_number">+ <?= htmlspecialchars(number_format($x["value"], 0, ',', ' ')) ?>
+                            </em></span>
 
                         </td>
                     <?php
                     else : ?>
-                        <td><em class="red_number">- <?= htmlspecialchars(number_format($x["value"], 0, ',', ' ')) ?>
-                            </em></td>
+                        <td><span class="td_value"><em class="red_number">- <?= htmlspecialchars(number_format($x["value"], 0, ',', ' ')) ?>
+                            </em></span></td>
                     <?php endif ?>
-                    <td><?= htmlspecialchars($x["transaction_date"]) ?></td>
+                    <td><span id="td_date"><?= htmlspecialchars($x["transaction_date"]) ?></span></td>
                     <td class="overview_button_flex">
                         <button type="button" data-id='<?= htmlspecialchars($x["id"]) ?>' class="overview_buttons btn_edit"><i class="fa-solid fa-pencil"></i></button>
                         <button type="button" data-id='<?= htmlspecialchars($x["id"]) ?>' class="overview_buttons btn_delete"><i class="fa-solid fa-xmark"></i></button>

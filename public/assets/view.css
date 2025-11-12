@@ -565,7 +565,7 @@ body {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
-.add_wrapper {
+.crud_wrapper {
   position: fixed;           /* zůstane nad obsahem */
   top: 50%;                  /* posun doprostřed vertikálně */
   left: 50%;                 /* posun doprostřed horizontálně */
@@ -584,8 +584,8 @@ body {
 }
 
 /* vstupy */
-.add_wrapper input,
-.add_wrapper select {
+.crud_wrapper input,
+.crud_wrapper select {
   padding: 8px 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -593,14 +593,14 @@ body {
   outline: none;
 }
 
-.add_wrapper input:focus,
-.add_wrapper select:focus {
+.crud_wrapper input:focus,
+.crud_wrapper select:focus {
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 /* tlačítko */
-.add_wrapper button {
+.crud_wrapper button {
   margin-top: 1rem;
   align-self: center;
   background-color: #3b82f6;
@@ -616,7 +616,7 @@ body {
   transition: all 0.15s ease-in-out;
 }
 
-.add_wrapper button:hover {
+.crud_wrapper button:hover {
   background-color: #2563eb;
   transform: translateY(-1px);
 }

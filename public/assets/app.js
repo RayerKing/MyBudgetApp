@@ -281,14 +281,14 @@ month_input?.addEventListener("change", vyber_mesice);
 
 // funkce pro zobrazení okna
 
-add_wrap_visibility = false;
-console.log("Základ: " + add_wrap_visibility);
+let add_wrap_visibility = false;
+//console.log("Základ: " + add_wrap_visibility);
 
 // pokud uživatel klikne na button přidat transakci
 // funkce zobrazi modal okno pro přidání transakce
 document.addEventListener("click", (e) => {
   if (e.target.closest(".add_button")) {
-    const add_wrap = document.querySelector(".add_wrapper");
+    const add_wrap = document.getElementById("add_wrapper");
     add_wrap_visibility = true;
     add_wrap.classList.remove("hidden");
     add_wrap.style.pointerEvents = "auto";
@@ -298,7 +298,7 @@ document.addEventListener("click", (e) => {
 
 // když klikne mimo, modal okno zmizí
 window.addEventListener("click", (e) => {
-  const add_wrap = document.querySelector(".add_wrapper");
+  const add_wrap = document.getElementById("add_wrapper");
   const add_button = document.querySelector(".add_button");
   const overview_table = document.querySelector(".overview_table");
   if (overview_table) {
@@ -420,7 +420,7 @@ async function first_load(first_month) {
     load_text();
 
     first_loading = false;
-    console.log("First loading je: " + first_loading);
+    //console.log("First loading je: " + first_loading);
   } else {
     console.log("First loading je: " + first_loading);
 
@@ -692,6 +692,10 @@ wrapper?.addEventListener("click", (e) => {
   // načtení tlačítka, na které jsme kliknuli
   const btn_delete = e.target.closest(".btn_delete");
 
+  if (!btn_delete) {
+    return;
+  }
+
   // řádek, ve kterém je kliknuté tlačítko
   const tr = e.target.closest(".overview_tr");
 
@@ -736,7 +740,6 @@ wrapper?.addEventListener("click", (e) => {
 
       // velikost == 0 => co se stane
       if (length == 0) {
-
         // vytvoří řádek s textem a parametry
         const empty_tr = document.createElement("tr");
         empty_tr.classList.add("overview_tr");
@@ -748,3 +751,165 @@ wrapper?.addEventListener("click", (e) => {
     }
   }
 });
+
+// ===================================
+// === Logika pro úpravu transakce ===
+// ===================================
+let edit_wrap_visibility = false;
+
+wrapper?.addEventListener("click", (e) => {
+  // nalezení tlačítka pro edit pro zobrazení edit okna
+  const edit_button = e.target.closest(".btn_edit");
+
+  if (!edit_button) {
+    return;
+  }
+
+  // zjištění id transakce pro její změnu
+  const transaction_data_id = edit_button.dataset.id;
+
+  // nalezení řádku, ve kterém se nacházíme
+  const tr = e.target.closest(".overview_tr");
+
+  // vytvoření proměnných pro hodnoty v řádku
+  const name = tr.dataset.name;
+  const description = tr.dataset.description;
+  const category = tr.dataset.category;
+  const value = tr.dataset.value;
+  const date = tr.dataset.date;
+
+  // načtení inputů z formuláře
+  const input_name = document.getElementById("edit_transaction_name");
+  const input_description = document.getElementById(
+    "edit_transaction_description"
+  );
+  const input_value = document.getElementById("edit_value");
+  const input_category = document.getElementById("edit_transaction_category");
+  const input_date = document.getElementById("edit_transaction_date");
+
+  // vložení hodnot do inputů
+  input_name.value = name;
+  input_description.value = description;
+  input_value.value = value;
+  input_category.value = category;
+  input_date.value = date;
+
+  console.log("ID transakce je: " + transaction_data_id);
+
+  // načtení formuláře a jeho zobrazení
+  const edit_wrapper = document.getElementById("edit_wrapper");
+  edit_wrapper.classList.remove("hidden");
+  edit_wrap_visibility = true;
+
+  // načtení tlačítka pro potvrzení úpravy
+  const btn_edit = document.querySelector(".edit_button_form");
+
+
+  const update_transaction = () => {// kontrola vstupů, zda jsou všechny hodnoty nutné do Databáze vyplněny
+    if (!input_name.value || !input_date.value || !input_value.value) {
+      alert("Něco ti chybí vyplnit.");
+      return;
+    }
+
+    edit_wrapper.classList.add("hidden");
+    edit_wrap_visibility = false;
+    //console.log("Schovávám edit okno");
+
+    // změna dataset dle nových inputů
+    tr.dataset.name = input_name.value.trim();
+    tr.dataset.description = input_description.value.trim();
+    tr.dataset.category = input_category.value.trim();
+    tr.dataset.value = input_value.value.trim();
+    tr.dataset.date = input_date.value.trim();
+
+    // nalezení konkrétních td pro vložení hodnot
+    const td_name = document.getElementById("td_name");
+    const td_description = document.getElementById("td_description");
+    const td_category = document.querySelector(".td_category");
+    const td_value = document.querySelector(".td_value");
+    const td_date = document.getElementById("td_date");
+
+    const formData = new FormData();
+    formData.append("transaction_name", input_name.value.trim());
+    formData.append("transaction_description", input_description.value.trim());
+    formData.append("transaction_value", input_value.value.trim());
+    formData.append("transaction_category", input_category.value.trim());
+    formData.append("transaction_date", input_date.value.trim());
+    formData.append("transaction_id", transaction_data_id);
+
+    postData(formData);
+
+    async function postData(formData) {
+      try {
+        const response = await fetch("../app/actions/edit.php", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+        
+
+        if (data.ok) {
+          // vkládání hodnot do td
+          td_name.textContent = input_name.value;
+          td_description.textContent = input_description.value;
+
+          // převedení textu kategorie do čitelnějšího tvaru
+          if (input_category.value == "ostatni") {
+            td_category.textContent = "Ostatní";
+          } else if (input_category.value == "jidlo") {
+            td_category.textContent = "Potraviny";
+          } else if (input_category.value == "doprava") {
+            td_category.textContent = "Doprava";
+          } else if (input_category.value == "najem") {
+            td_category.textContent = "Bydlení";
+          } else if (input_category.value == "zabava") {
+            td_category.textContent = "Zábava";
+          } else if (input_category.value == "prijem") {
+            td_category.textContent = "Příjem";
+          } else if (input_category.value == "sporeni") {
+            td_category.textContent = "Spoření";
+          }
+
+          // podmínka, když je value kladná, nebo záporná
+          if (input_category.value == "prijem") {
+            td_value.innerHTML = `<em class="green_number">+ ${input_value.value}</em>`;
+          } else {
+            td_value.innerHTML = `<em class="red_number">- ${input_value.value}</em>`;
+          }
+
+          td_date.textContent = input_date.value;
+        }
+      } catch (error) {
+        alert("Něco se nepovedlo: " + error);
+      }
+    }
+
+
+    // Podmínka, když je měsíc nebo rok jiný oproti původnímu datu, smaže tr
+
+    const new_date_value = input_date.value;
+    const old_date_value = date;
+
+    console.log("Nový datum: " + new_date_value);
+    console.log("Starý datum: " + old_date_value);
+
+    const new_date = new_date_value.split("-");
+    const old_date = old_date_value.split("-");
+
+    if(new_date[0] == old_date[0]){
+      console.log("Roky jsou stejné");
+      if(new_date[1] == old_date[1]){
+        console.log("Měsíce jsou stejné");
+      } else {
+        console.log("Měsíce nejsou stejné");
+        tr.remove();
+      }
+    } else {
+      console.log("Roky nejsou stejné");
+      tr.remove();
+    }}
+
+  // funkce pro uložení změněných dat
+  btn_edit?.addEventListener("click", update_transaction, { once: true });
+});
+

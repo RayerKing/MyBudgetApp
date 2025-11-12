@@ -1,6 +1,6 @@
 <!-- Formulář pro přidání transakce -->
 <form method="POST" id="add_form">
-    <div class="add_wrapper hidden">
+    <div class="crud_wrapper hidden" id="add_wrapper">
         <label for="transaction_name">Název transakce *</label>
         <input type="text" id="transaction_name" name="transaction_name" required>
 
