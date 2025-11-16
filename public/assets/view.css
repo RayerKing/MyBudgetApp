@@ -7,6 +7,10 @@
   align-items: center;
 }
 
+.help_nav {
+  text-decoration: none;
+}
+
 #option-menu {
   display: inline-flex;
   align-items: center;
@@ -87,8 +91,9 @@
   transition: background-color 0.12s ease, color 0.12s ease;
 }
 .rozbalovaciOknoRows i {
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   color: #374151;
+  margin-top: 2px;
 }
 .rozbalovaciOknoRows.row-avatar {
   justify-content: center;
@@ -443,6 +448,8 @@ body {
   letter-spacing: 0.5px;
 }
 
+
+
 /* GRID */
 .inner-tabulky {
   display: grid;
@@ -535,14 +542,21 @@ body {
   transform: translateY(1px);
 }
 
-.add_button {
+.flex_btn {
   position: absolute;
   top: 20px;
   right: 15px;
+ 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  background-color: #3b82f6; 
+
+.add_button {
+  background-color: #3b82f6;
   color: #fff;
-  border: solid blue 2px;
+  border: solid #2563eb 2px;
   border-radius: 10px;
   padding: 10px 18px;
   font-size: 1.1rem;
@@ -555,6 +569,27 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
+.all_button{
+background-color: #3b82f6;
+  color: #fff;
+  border: solid #2563eb 2px;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+.flex_btn > a {
+  text-decoration: none;
+
+}
+
 .add_button i {
   font-size: 1.2rem;
 }
@@ -563,6 +598,14 @@ body {
   background-color: #2563eb;
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  color: black;
+}
+
+.all_button:hover{
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  color: black;
 }
 
 .crud_wrapper {
@@ -598,6 +641,8 @@ body {
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
+
+
 
 /* tlačítko */
 .crud_wrapper button {
@@ -918,3 +963,214 @@ body {
     text-align: right;
   }
 }
+
+.none_button:hover {
+  cursor: default;
+}
+
+/* ================ */
+/* === HELP.PHP === */
+/* ================ */
+
+/* Celá stránka s nápovědou */
+.get_help {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 15px 50px;
+}
+
+/* Hlavní nadpis */
+.title_help {
+  text-align: center;
+}
+
+.title_help h2 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.subtitle_help {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Jednotlivé články */
+.article_help {
+  background: #ffffff;
+  padding: 20px 22px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+.article_help h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.text_help {
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* Seznam bez odrážek */
+.help_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.help_list li {
+  margin-bottom: 22px;
+}
+
+/* Název funkce */
+.help_list h4 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+/* Tlačítko + text */
+.li_text {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* Tlačítka v nápovědě – bez pointeru */
+.help_btn,
+.help_icon_btn {
+  cursor: default !important;
+}
+
+/* Upravit vzhled tlačítek, ať se hodí do nápovědy */
+.help_btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #e5e7eb;
+  color: #111827;
+  border: 1px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.help_icon_btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #e5e7eb;
+  border: 1px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+/* Responsivita */
+@media (max-width: 600px) {
+  .li_text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
+.help_nav {
+  text-decoration: none;
+  color: black;
+  
+
+}
+
+.flex_icons_text {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  
+}
+
+.help_nav:hover {
+  color: black;
+  text-decoration: none;
+}
+
+/* =================== */
+/* === Option page === */
+/* =================== */
+
+/* Obalení celé sekce */
+.user_info {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+/* Nadpis */
+.user_title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Karta s informacemi */
+.user_card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Tabulka */
+.table_option {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Levý sloupec (popis) */
+.table_option th {
+  text-align: left;
+  padding: 10px 0;
+  width: 35%;
+  font-weight: 600;
+  color: #374151;
+  font-size: 1rem;
+}
+
+/* Pravý sloupec (data) */
+.table_option td {
+  padding: 10px 0;
+  color: #111827;
+  font-size: 1rem;
+}
+
+/* Oddělovací linky */
+.table_option tr + tr th,
+.table_option tr + tr td {
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Responzivita */
+@media (max-width: 480px) {
+  .table_option th,
+  .table_option td {
+    display: block;
+    width: 100%;
+  }
+  
+  .table_option th {
+    margin-top: 12px;
+    font-size: 0.95rem;
+  }
+
+  .table_option td {
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+}
+

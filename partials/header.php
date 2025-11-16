@@ -12,6 +12,7 @@
 
 <body>
     <header>
+        
         <a href="../public/index.php" class="logo">
             <h1><i class="fa-solid fa-sack-dollar"></i> MyBudgetApp</h1>
         </a>

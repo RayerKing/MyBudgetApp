@@ -42,10 +42,20 @@
                         <?= htmlspecialchars($_SESSION["firstName"]) ?> <?= htmlspecialchars($_SESSION["lastName"]) ?>
                     </div>
                     <div class="rozbalovaciOknoRows row-settings">
-                        <i class="fa-solid fa-gear"></i> Nastavení
+                        <a href="../views/option.php" target="_blank" class="help_nav">
+                            <div class="flex_icons_text">
+                                <i class="fa-solid fa-gear"></i> Nastavení
+                            </div>
+                        </a>
                     </div>
                     <div class="rozbalovaciOknoRows row-help">
-                        <i class="fa-solid fa-circle-question"></i> Nápověda
+                        <a href="../views/help.php" target="_blank" class="help_nav">
+                            <div class="flex_icons_text">
+                                <i class="fa-solid fa-circle-question"></i>Nápověda
+                            </div>
+                            
+                        </a>
+                        
                     </div>
                     <div class="rozbalovaciOknoRows">
                         <form action="../../auth/logout.php" method="post">

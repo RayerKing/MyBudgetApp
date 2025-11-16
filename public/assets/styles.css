@@ -238,3 +238,56 @@ input:focus {
   }
 }
 
+/* =============================================== */
+/* === Hlavní stránka nepřihlášeného uživatele === */
+/* =============================================== */
+.guest_hero {
+  max-width: 600px;
+  margin: 80px auto;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.hero_icon {
+  font-size: 3rem;
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+
+.guest_hero h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.hero_text {
+  color: #4b5563;
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+
+.hero_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.hero_btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.hero_btn.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.hero_btn.secondary {
+  background: #e5e7eb;
+  color: #111827;
+}
+

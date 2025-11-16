@@ -3,15 +3,18 @@
 
 <div class="tabulky">
     <h1 class="h1">Přehled</h1>
+    <div class="flex_btn">
+        <a href="../app/overview.php?month=<?= urlencode($month) ?>" target="_blank" class="all_button"><i class="fa-solid fa-list"></i>Zobrazit všechny</a>
+        <!-- Tlačítko pro přidání transakce -->
+        <button type="button" class="add_button"><i class="fa-regular fa-square-plus"></i> Přidat transakci</button>
 
-    <!-- Tlačítko pro přidání transakce -->
-    <button type="button" class="add_button"><i class="fa-regular fa-square-plus"></i> Přidat transakci</button>
+    </div>
 
     <?php
 
     include "add_form.php";
 
-?>
+    ?>
 
 
     <div class="inner-tabulky">
@@ -55,16 +58,7 @@
                     <?php endforeach ?>
                 </tbody>
 
-                <?php if ($count > 3): ?>
-                    <tfoot>
-                        <tr>
-                            <td>
-                                <a href="../app/overview.php?month=<?= urlencode($month) ?>" target="_blank" class="btn btn-primary btn-sm">Zobrazit všechny</a>
-                            </td>
-                        </tr>
-                    </tfoot>
-
-                <?php endif ?>
+                
             <?php endif ?>
         </table>
 
@@ -127,17 +121,7 @@
                         <?php endforeach ?>
                     </tbody>
 
-                    <?php
-                    if (count($transactions) > 3):
-                    ?>
-                        <tfoot>
-                            <tr>
-                                <td>
-                                    <button type="button" class="btn-success">Zobrazit všechny</button>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    <?php endif ?>
+                    
 
                 <?php endif ?>
             </table>

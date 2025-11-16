@@ -74,13 +74,18 @@ btn_month_picker?.addEventListener("click", (e) => {
 // když klikne mimo talčítko a div , zavře výběr měsíce
 window.addEventListener("click", (e) => {
   const over_view_table = document.querySelector(".overview_table");
+  const timebar_headline = document.querySelector(".timebar__title");
   if (over_view_table) {
     return;
   }
+  if (!timebar_headline){
+    return;
+  }
   if (
+    visibleMonthPicker == true &&
     !month_input.contains(e.target) &&
-    !btn_month_picker.contains(e.target) &&
-    visibleMonthPicker == true
+    !btn_month_picker.contains(e.target) 
+    
   ) {
     month_input.classList.add("hidden");
     visibleMonthPicker = false;
@@ -112,7 +117,11 @@ btn_range?.addEventListener("click", open_range);
 // když klikne mimo talčítko a div , zavře výběr od do
 window.addEventListener("click", (e) => {
   const over_view_table = document.querySelector(".overview_table");
+  const timebar_headline = document.querySelector(".timebar__title");
   if (over_view_table) {
+    return;
+  }
+  if (!timebar_headline){
     return;
   }
   if (
@@ -301,7 +310,11 @@ window.addEventListener("click", (e) => {
   const add_wrap = document.getElementById("add_wrapper");
   const add_button = document.querySelector(".add_button");
   const overview_table = document.querySelector(".overview_table");
+  const timebar_headline = document.querySelector(".timebar__title");
   if (overview_table) {
+    return;
+  }
+  if (!timebar_headline) {
     return;
   }
   if (
