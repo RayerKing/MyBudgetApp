@@ -2,9 +2,9 @@
 
 // === základní struktura pro nepřihlášeného uživatele ===
 
-include "../partials/header.php";
+include "partials/header.php";
 
-include "../config/database.php";
+include "config/database.php";
 
 
 ?>
@@ -18,15 +18,15 @@ include "../config/database.php";
     </p>
 
     <div class="hero_buttons">
-        <a href="../views/register.php" class="hero_btn primary">Registrace</a>
-        <a href="../views/login.php" class="hero_btn secondary">Přihlášení</a>
+        <a href="public/views/auth/register.php" class="hero_btn primary">Registrace</a>
+        <a href="public/views/auth/login.php" class="hero_btn secondary">Přihlášení</a>
     </div>
 </div>
 
 
 <?php
 
-include "../partials/footer.php";
+include "partials/footer.php";
 
 
 

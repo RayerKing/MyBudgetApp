@@ -57,8 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("sssss", $username, $name, $lastname, $hash, $email);
 
             if ($stmt->execute()) {
-                $_SESSION["flashRegister"] = 'Registrace proběhla úspěšně.<br>
-            Nyní můžete přejít k <a href="../public/views/auth/login.php">přihlášení</a>';
+                $_SESSION["flashRegister"] = "Registrace proběhla úspěšně. Nyní se můžete přihlásit.";
+
+
                 header("Location: ../public/views/auth/register.php");
                 exit;
             } else {

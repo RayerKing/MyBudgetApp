@@ -78,14 +78,13 @@ window.addEventListener("click", (e) => {
   if (over_view_table) {
     return;
   }
-  if (!timebar_headline){
+  if (!timebar_headline) {
     return;
   }
   if (
     visibleMonthPicker == true &&
     !month_input.contains(e.target) &&
-    !btn_month_picker.contains(e.target) 
-    
+    !btn_month_picker.contains(e.target)
   ) {
     month_input.classList.add("hidden");
     visibleMonthPicker = false;
@@ -121,7 +120,7 @@ window.addEventListener("click", (e) => {
   if (over_view_table) {
     return;
   }
-  if (!timebar_headline){
+  if (!timebar_headline) {
     return;
   }
   if (
@@ -817,8 +816,8 @@ wrapper?.addEventListener("click", (e) => {
   // načtení tlačítka pro potvrzení úpravy
   const btn_edit = document.querySelector(".edit_button_form");
 
-
-  const update_transaction = () => {// kontrola vstupů, zda jsou všechny hodnoty nutné do Databáze vyplněny
+  const update_transaction = () => {
+    // kontrola vstupů, zda jsou všechny hodnoty nutné do Databáze vyplněny
     if (!input_name.value || !input_date.value || !input_value.value) {
       alert("Něco ti chybí vyplnit.");
       return;
@@ -836,11 +835,11 @@ wrapper?.addEventListener("click", (e) => {
     tr.dataset.date = input_date.value.trim();
 
     // nalezení konkrétních td pro vložení hodnot
-    const td_name = document.getElementById("td_name");
-    const td_description = document.getElementById("td_description");
-    const td_category = document.querySelector(".td_category");
-    const td_value = document.querySelector(".td_value");
-    const td_date = document.getElementById("td_date");
+    const td_name = tr.querySelector(".td_name");
+    const td_description = tr.querySelector(".td_description");
+    const td_category = tr.querySelector(".td_category");
+    const td_value = tr.querySelector(".td_value");
+    const td_date = tr.querySelector(".td_date");
 
     const formData = new FormData();
     formData.append("transaction_name", input_name.value.trim());
@@ -859,7 +858,6 @@ wrapper?.addEventListener("click", (e) => {
           body: formData,
         });
         const data = await response.json();
-        
 
         if (data.ok) {
           // vkládání hodnot do td
@@ -897,7 +895,6 @@ wrapper?.addEventListener("click", (e) => {
       }
     }
 
-
     // Podmínka, když je měsíc nebo rok jiný oproti původnímu datu, smaže tr
 
     const new_date_value = input_date.value;
@@ -909,9 +906,9 @@ wrapper?.addEventListener("click", (e) => {
     const new_date = new_date_value.split("-");
     const old_date = old_date_value.split("-");
 
-    if(new_date[0] == old_date[0]){
+    if (new_date[0] == old_date[0]) {
       console.log("Roky jsou stejné");
-      if(new_date[1] == old_date[1]){
+      if (new_date[1] == old_date[1]) {
         console.log("Měsíce jsou stejné");
       } else {
         console.log("Měsíce nejsou stejné");
@@ -920,9 +917,9 @@ wrapper?.addEventListener("click", (e) => {
     } else {
       console.log("Roky nejsou stejné");
       tr.remove();
-    }}
+    }
+  };
 
   // funkce pro uložení změněných dat
   btn_edit?.addEventListener("click", update_transaction, { once: true });
 });
-

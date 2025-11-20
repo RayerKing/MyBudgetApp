@@ -4,9 +4,15 @@
 <div class="tabulky">
     <h1 class="h1">Přehled</h1>
     <div class="flex_btn">
-        <a href="../app/overview.php?month=<?= urlencode($month) ?>" target="_blank" class="all_button"><i class="fa-solid fa-list"></i>Zobrazit všechny</a>
+        <a href="../app/overview.php?month=<?= urlencode($month) ?>" class="all_button">
+            <i class="fa-solid fa-list"></i>
+            <span class="btn-text-desktop">Zobrazit všechny</span></a>
         <!-- Tlačítko pro přidání transakce -->
-        <button type="button" class="add_button"><i class="fa-regular fa-square-plus"></i> Přidat transakci</button>
+        <button type="button" class="add_button">
+            <i class="fa-regular fa-square-plus"></i>
+            <span class="btn-text-desktop">Přidat transakci</span>
+            
+        </button>
 
     </div>
 
@@ -58,7 +64,7 @@
                     <?php endforeach ?>
                 </tbody>
 
-                
+
             <?php endif ?>
         </table>
 
@@ -121,7 +127,7 @@
                         <?php endforeach ?>
                     </tbody>
 
-                    
+
 
                 <?php endif ?>
             </table>

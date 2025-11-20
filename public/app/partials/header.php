@@ -25,7 +25,7 @@
         <nav>
             
 
-            <a href="../app/dashboard.php" class="nav-icon"><i class="fa-solid fa-house"></i></a>
+            <a href="../app/dashboard.php" class="nav-icon" id="nav_icon_home"><i class="fa-solid fa-house"></i></a>
 
             <div class="user-menu">
                 <button id="option-menu" class="nav-icon"><i class="fa-solid fa-bars"></i></button>
@@ -42,14 +42,15 @@
                         <?= htmlspecialchars($_SESSION["firstName"]) ?> <?= htmlspecialchars($_SESSION["lastName"]) ?>
                     </div>
                     <div class="rozbalovaciOknoRows row-settings">
-                        <a href="../views/option.php" target="_blank" class="help_nav">
+                        <a href="../views/option.php" class="help_nav">
                             <div class="flex_icons_text">
                                 <i class="fa-solid fa-gear"></i> Nastavení
                             </div>
                         </a>
                     </div>
+                    
                     <div class="rozbalovaciOknoRows row-help">
-                        <a href="../views/help.php" target="_blank" class="help_nav">
+                        <a href="../views/help.php" class="help_nav">
                             <div class="flex_icons_text">
                                 <i class="fa-solid fa-circle-question"></i>Nápověda
                             </div>

@@ -448,8 +448,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-
-
 /* GRID */
 .inner-tabulky {
   display: grid;
@@ -546,12 +544,11 @@ body {
   position: absolute;
   top: 20px;
   right: 15px;
- 
+
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
 
 .add_button {
   background-color: #3b82f6;
@@ -569,8 +566,8 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.all_button{
-background-color: #3b82f6;
+.all_button {
+  background-color: #3b82f6;
   color: #fff;
   border: solid #2563eb 2px;
   border-radius: 10px;
@@ -587,7 +584,6 @@ background-color: #3b82f6;
 
 .flex_btn > a {
   text-decoration: none;
-
 }
 
 .add_button i {
@@ -601,7 +597,7 @@ background-color: #3b82f6;
   color: black;
 }
 
-.all_button:hover{
+.all_button:hover {
   background-color: #2563eb;
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
@@ -609,18 +605,18 @@ background-color: #3b82f6;
 }
 
 .crud_wrapper {
-  position: fixed;           /* zůstane nad obsahem */
-  top: 50%;                  /* posun doprostřed vertikálně */
-  left: 50%;                 /* posun doprostřed horizontálně */
+  position: fixed; /* zůstane nad obsahem */
+  top: 50%; /* posun doprostřed vertikálně */
+  left: 50%; /* posun doprostřed horizontálně */
   transform: translate(-50%, -50%); /* vyrovná střed */
   background-color: #ffffff; /* bílý podklad */
   padding: 2rem 2.5rem;
   border: solid 1px;
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  z-index: 999;              /* nad vším ostatním */
+  z-index: 999; /* nad vším ostatním */
   width: 400px;
-  max-width: 90%;            /* na menších displejích přizpůsobí */
+  max-width: 90%; /* na menších displejích přizpůsobí */
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -641,8 +637,6 @@ background-color: #3b82f6;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
-
-
 
 /* tlačítko */
 .crud_wrapper button {
@@ -669,40 +663,33 @@ background-color: #3b82f6;
 /* === Bubbles styly ===*/
 /* =====================*/
 
-
 .bubble_flex {
   display: flex;
-  justify-content: center;    
-  align-items: center;         
-  gap: 30px;                   
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
   margin-bottom: 15px;
-  
 }
-
 
 .bubble-inner-flex {
   width: 160px;
   height: 160px;
   border-radius: 40%;
-  border: 20px solid;          
+  border: 20px solid;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgb(196, 190, 190);
   font-size: 1.2rem;
   font-weight: 600;
-  color: #e5e7eb;             
+  color: #e5e7eb;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-
 .bubble-inner-flex:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255,255,255,0.15);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
-
-
-
 
 @media (max-width: 700px) {
   .bubble_flex {
@@ -713,7 +700,7 @@ background-color: #3b82f6;
   }
 }
 
-.bubbles{
+.bubbles {
   border: 0;
   background: var(--panel);
   border-radius: 14px;
@@ -723,7 +710,7 @@ background-color: #3b82f6;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.bubble-income{
+.bubble-income {
   border-color: green;
 }
 
@@ -741,7 +728,7 @@ background-color: #3b82f6;
 
 /* ==========================*/
 /* === Styly pro overview ===*/
-/* ==========================*/ 
+/* ==========================*/
 /* ====== Paleta jen pro tabulku ====== */
 :root {
   --ovw-bg: #12141b;
@@ -762,7 +749,7 @@ background-color: #3b82f6;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--panel);
-  
+
   border: 1px solid var(--ovw-border);
   border-radius: 14px;
   box-shadow: var(--ovw-shadow);
@@ -775,7 +762,7 @@ background-color: #3b82f6;
   position: sticky;
   top: 0;
   background: var(--panel);
-  
+
   text-align: center;
   padding: 14px 16px;
   font-weight: 600;
@@ -806,14 +793,12 @@ background-color: #3b82f6;
   width: 22%;
   font-weight: 600;
   text-align: center;
-  
 }
 
 .overview_thead th:nth-child(2),
 .overview_tbody td:nth-child(2) {
   width: 30%;
   text-align: center;
-  
 }
 
 .overview_thead th:nth-child(3),
@@ -826,25 +811,19 @@ background-color: #3b82f6;
 .overview_tbody td:nth-child(4) {
   width: 12%;
   text-align: center;
- 
 }
 
 .overview_thead th:nth-child(5),
 .overview_tbody td:nth-child(5) {
   width: 12%;
   text-align: center;
-  
-  
 }
 
 .overview_thead th:nth-child(6),
 .overview_tbody td:nth-child(6) {
   width: 8%;
   text-align: center;
-  
-  
 }
-
 
 /* Prázdný stav */
 .overview_tbody td[colspan="6"] {
@@ -854,34 +833,33 @@ background-color: #3b82f6;
 }
 
 .green_number {
-  color:rgb(6, 59, 6);
+  color: rgb(6, 59, 6);
   display: inline-block;
-  
+
   width: 90%;
   border: 2px solid green;
   background-color: rgb(70, 225, 70);
-  
+
   padding: 3px 0px;
   border-radius: 15px;
 }
 
 .red_number {
-  color:rgb(67, 1, 1);
+  color: rgb(67, 1, 1);
   display: inline-block;
-  
+
   width: 90%;
   border: 2px solid red;
   background-color: rgb(236, 106, 106);
-  
+
   padding: 3px 0px;
   border-radius: 15px;
 }
 
-.overview_buttons{
+.overview_buttons {
   border: 1px solid black;
   border-radius: 8px;
   padding: 2px 8px;
-  
 }
 
 .btn_delete {
@@ -932,7 +910,6 @@ background-color: #3b82f6;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
-
 /* ====== Mobile ====== */
 @media (max-width: 820px) {
   .overview_thead {
@@ -955,8 +932,6 @@ background-color: #3b82f6;
   .overview_tbody td {
     padding: 6px 4px;
   }
-
-  
 
   .overview_tbody td:nth-child(4),
   .overview_tbody td:nth-child(5) {
@@ -1002,7 +977,7 @@ background-color: #3b82f6;
   background: #ffffff;
   padding: 20px 22px;
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .article_help h3 {
@@ -1082,15 +1057,12 @@ background-color: #3b82f6;
 .help_nav {
   text-decoration: none;
   color: black;
-  
-
 }
 
 .flex_icons_text {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  
 }
 
 .help_nav:hover {
@@ -1162,7 +1134,7 @@ background-color: #3b82f6;
     display: block;
     width: 100%;
   }
-  
+
   .table_option th {
     margin-top: 12px;
     font-size: 0.95rem;
@@ -1173,4 +1145,159 @@ background-color: #3b82f6;
     font-size: 1rem;
   }
 }
+
+/* Globální vzhled pilulky (desktop i mobil) */
+.red_number,
+.green_number {
+  border-radius: 999px;
+  /* tady nech svoje background, border, barvu textu atd. */
+}
+
+/* ================= MOBILNÍ VERZE ================= */
+@media (max-width: 768px) {
+  .btn-text-desktop {
+    display: none;
+  }
+
+  .tabulky > h1 {
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  .overview_thead {
+    display: none;
+  }
+
+  .overview_tbody {
+    display: block;
+  }
+
+  /* Každý řádek = card */
+  .overview_tr {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    background: #f5f5f5;
+  }
+
+  /* Buňky ve sloupci, na střed */
+  .overview_tr td {
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    background: transparent;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+  }
+
+  /* Label (::before) nad každou hodnotou */
+  .overview_tr td::before {
+    width: 100%;
+    text-align: center;
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #777;
+    margin-bottom: 0.15rem;
+  }
+
+  /* Název jako hlavička kartičky */
+  .overview_tr td:first-child {
+    font-weight: 700;
+    font-size: 1rem;
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .overview_tr td:first-child::before {
+    content: "Název";
+  }
+
+  /* Popisky pro ostatní buňky */
+  .overview_tr td:nth-child(2)::before { content: "Popis"; }
+  .overview_tr td:nth-child(3)::before { content: "Kategorie"; }
+  .overview_tr td:nth-child(4)::before { content: "Cena"; }
+  .overview_tr td:nth-child(5)::before { content: "Datum"; }
+  .overview_tr td:nth-child(6)::before { content: "Úprava"; }
+
+  /* Text hodnot */
+  .overview_tr td span {
+    display: inline;
+  }
+
+  /* ===== CENA – pilulka přesně uprostřed ===== */
+
+  /* wrapper kolem pilulky */
+  .overview_tr td:nth-child(4) .td_value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  /* pilulka sama + šířka */
+  .overview_tr td:nth-child(4) .red_number,
+  .overview_tr td:nth-child(4) .green_number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    padding: 5px 80px;     /* tady si dolaď šířku */
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  /* Datum uprostřed */
+  #td_date {
+    display: inline-block;
+    text-align: center;
+  }
+
+  /* Úprava – tlačítka vedle sebe uprostřed */
+  .overview_button_flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .overview_button_flex button {
+    margin: 0;
+  }
+
+  td.overview_button_flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+  }
+
+  /* řádek s tlačítky vedle sebe */
+  .overview_button_flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .overview_button_flex button {
+    margin: 0;
+  }
+}
+
+
 

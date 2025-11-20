@@ -20,10 +20,10 @@ session_start();
 
 <body>
     <header>
-        <a href="../../index.php" class="logo">
+        <a href="../../../index.php" class="logo">
             <h1><i class="fa-solid fa-sack-dollar"></i> MyBudgetApp</h1>
         </a>
-        <nav>
+        <nav id="index_nav_a">
             <a href="register.php">Registrace</a>
             <a href="login.php" class="active">Přihlášení</a>
         </nav>
